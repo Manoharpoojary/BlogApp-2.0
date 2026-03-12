@@ -120,7 +120,7 @@ class Service{
         try{
             await this.storage.deleteFile({
                                         bucketId: conf.appwrite_bucket_id ,
-                                        fileId:file
+                                        fileId:fileId
                                     });
             return true
         }catch(error){
@@ -141,4 +141,6 @@ class Service{
 const service=new Service();
 
 export default service
+
+
 

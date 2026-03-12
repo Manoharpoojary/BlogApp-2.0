@@ -36,7 +36,11 @@ class AppwriteAuth{
         try{
             return await this.account.get()
         }catch(error){
-            console.log("Appwrite cant access the correct user..!", error)
+            if(error.code===401){
+                console.log("Appwrite cant access the correct user..!", error)
+            return null
+        }
+            
         }
     }
     async logoutUser(){
