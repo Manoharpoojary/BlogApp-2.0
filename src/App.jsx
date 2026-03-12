@@ -32,7 +32,7 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-800 flex flex-col flex-wrap gap-1.5 items-center p-5">
+    <div className="min-h-screen bg-gray-800 flex flex-col flex-wrap w-full gap-1.5 items-center p-5">
       <Header/>
       <h1>hello world</h1>
       <Outlet/>
