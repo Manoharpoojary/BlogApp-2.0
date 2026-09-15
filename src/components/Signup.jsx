@@ -1,0 +1,8 @@
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
+import authService from "../appwrite/auth";
+import { login } from "../features/authSlice";
+import { Button, Input, Logo } from "./index";
+export default function Signup(){const {register,handleSubmit}=useForm();const [error,setError]=useState("");const dispatch=useDispatch();const navigate=useNavigate();const submit=async data=>{setError("");const session=await authService.addUser({email:data.email,password:data.password,username:data.name});if(session){const user=await authService.getCurrentUser();if(user){dispatch(login({userData:user}));navigate("/");}}else setError("Unable to create account. The email may already be registered.");};return <div className="flex justify-center p-8"><div className="w-full max-w-lg bg-white rounded-xl p-10 shadow"><div className="flex justify-center mb-4"><Logo/></div><h1 className="text-2xl font-bold text-center">Sign up to create account</h1><p className="text-center mt-2">Already have an account? <Link className="text-blue-600" to="/login">Sign In</Link></p>{error&&<p className="text-red-600 text-center mt-4">{error}</p>}<form onSubmit={handleSubmit(submit)} className="mt-8 space-y-5"><Input label="Full Name" {...register("name",{required:true})}/><Input label="Email" type="email" {...register("email",{required:true})}/><Input label="Password" type="password" {...register("password",{required:true,minLength:8})}/><Button type="submit" className="w-full">Create Account</Button></form></div></div>;}
