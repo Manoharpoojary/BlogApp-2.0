@@ -13,5 +13,13 @@ export default function AuthLayout({ children, authentication = true }) {
     else setLoader(false);
   }, [authStatus, authentication, navigate]);
 
-  return loader ? <div className="p-10 text-center">Loading...</div> : <>{children}</>;
+  if (loader) {
+    return (
+      <div className="flex items-center justify-center min-h-[50vh]">
+        <div className="spinner" />
+      </div>
+    );
+  }
+
+  return <>{children}</>;
 }

@@ -18,12 +18,20 @@ function App() {
       .finally(() => setLoading(false));
   }, [dispatch]);
 
-  if (loading) return <div className="min-h-screen grid place-items-center bg-gray-400">Loading...</div>;
+  if (loading)
+    return (
+      <div className="bg-mesh flex flex-col items-center justify-center min-h-screen gap-4">
+        <div className="spinner" />
+        <p className="text-sm text-[var(--text-muted)] tracking-wide animate-fade-in">Loading BlogVerse…</p>
+      </div>
+    );
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-400">
+    <div className="bg-mesh flex flex-col min-h-screen">
       <Header />
-      <main className="flex-1 w-full"><Outlet /></main>
+      <main className="flex-1 w-full animate-fade-in">
+        <Outlet />
+      </main>
       <Footer />
     </div>
   );
